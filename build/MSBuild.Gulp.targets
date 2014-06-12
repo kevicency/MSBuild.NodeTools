@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <NpmInstallCmd>$(NpmExecutable) install --loglevel error</NpmInstallCmd>
+        <RunGulpCmd>$(GulpExecutable) $(GulpTaskName)</RunGulpCmd>
+        <BuildDependsOn>
+            NpmInstall;
+            RunGulp;
+            $(BuildDependsOn);
+        </BuildDependsOn>
+    </PropertyGroup>
+
+    <Target Name="NpmInstall">
+        <Exec Command="$(NpmInstallCmd)"
+            LogStandardErrorAsError="true"
+            WorkingDirectory="$(MSBuildProjectDirectory)"
+            Condition="Exists('$(MSBuildProjectDirectory)\package.json')" />
+    </Target>
+
+    <Target Name="RunGulp">
+        <Exec Command="$(RunGulpCmd)"
+            LogStandardErrorAsError="true"
+            WorkingDirectory="$(MSBuildProjectDirectory)"
+            Condition="Exists('$(MSBuildProjectDirectory)\gulpfile.js')" />
+    </Target>
+<!-- vim: set ft=xml sw=4 :-->
+</Project>
