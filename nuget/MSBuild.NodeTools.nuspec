@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>MSBuild.NodeTools</id>
+    <title>MSBuild.NodeTools</title>
+    <version>0.2.0</version>
+    <authors>Kevin Mees</authors>
+    <owners>Kevin Mees</owners>
+    <projectUrl>http://github.com/kmees/MSBuild.NodeTools</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Run a multitude of node tools as a MSBuild task</description>
+    <tags>Bower Grunt Gulp Npm MSBuild</tags>
+    <dependencies>
+      <dependency id="MSBuild.Npm" version="(,1.0]" />
+      <dependency id="MSBuild.Bower" version="(,1.0]" />
+      <dependency id="MSBuild.Gulp" version="(,1.0]" />
+      <dependency id="MSBuild.Grunt" version="(,1.0]" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="build\**.*" target="build\" />
+    <file src="README.md" target="content\README.md" />
+  </files>
+</package>
