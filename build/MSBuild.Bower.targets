@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target Name="EnsureBower">
+        <PropertyGroup>
+            <BowerNotFoundError>Bower installation not found. Please set the 'NpmPath' property in your project file that contains the bower binary.</BowerNotFoundError>
+            <BowerExecutable>$(NpmPath)\bower.cmd</BowerExecutable>
+        </PropertyGroup>
+        <Message Text="Ensuring Bower is installed" Importance="low" />
+
+        <Exec Command="$(WINDIR)\system32\where.exe bower"
+            ContinueOnError="true"
+            IgnoreExitCode="true"
+            ConsoleToMsBuild="true"
+            Condition="!Exists('$(BowerExecutable)')">
+            <Output TaskParameter="ExitCode" PropertyName="ErrorCode"/>
+            <Output TaskParameter="ConsoleOutput" PropertyName="BowerExecutable" />
+        </Exec>
+        <Error Condition=" '$(ErrorCode)' != '0' " Text="'$(BowerNotFoundError)'" />
+
+        <PropertyGroup>
+            <RunBowerCmd>"$(BowerExecutable)" $(BowerCommand)</RunBowerCmd>
+        </PropertyGroup>
+
+        <Message Text="Bower found: '$(BowerExecutable)'" />
+    </Target>
+
+    <Target Name="RunBower" DependsOnTargets="EnsureNpm;EnsureBower" BeforeTargets="PrepareForBuild" Condition="Exists('$(BowerFile)')">
+        <Exec Command="$(RunBowerCmd)"
+            CustomErrorRegularExpression="E[A-Z]+"/>
+    </Target>
+<!-- vim: set ft=xml sw=4 :-->
+</Project>

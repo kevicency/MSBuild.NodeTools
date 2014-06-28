@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target Name="EnsureNode">
+        <PropertyGroup>
+            <DefaultNodeNotFoundError>NodeJS installation not found. Please set the 'NODEJS' environment variable or the 'CustomNodePath' property in your project file.</DefaultNodeNotFoundError>
+            <CustomNodeNotFoundError>Invalid custom NodeJS installation path ('$(CustomNodePath)').</CustomNodeNotFoundError>
+        </PropertyGroup>
+        <Message Text="Ensuring NodeJS is installed" Importance="low" />
+
+        <Error Condition=" '$(CustomNodePath)' != '' AND !Exists('$(CustomNodePath)')" Text="'$(CustomNodeNotFoundError)'" />
+        <PropertyGroup Condition=" '$(CustomNodePath)' != '' ">
+            <NodePath>$(CustomNodePath)</NodePath>
+        </PropertyGroup>
+
+        <Exec Command="$(WINDIR)\system32\where.exe node"
+            ContinueOnError="true"
+            IgnoreExitCode="true"
+            ConsoleToMsBuild="true"
+            Condition=" '$(NodePath)' == '' ">
+            <Output TaskParameter="ExitCode" PropertyName="ErrorCode"/>
+            <Output TaskParameter="ConsoleOutput" PropertyName="NodeExecutable" />
+        </Exec>
+        <PropertyGroup Condition="'$(ErrorCode)' == '0'">
+            <NodePath>$([System.IO.Path]::GetDirectoryName('$(NodeExecutable)'))</NodePath>
+        </PropertyGroup>
+        <Error Condition="'$(NodePath)' == ''" Text="'$(DefaultNodeNotFoundError)'" />
+
+        <Message Text="NodeJS path is: '$(NodePath)'" />
+    </Target>
+
+    <Target Name="EnsureNpm" DependsOnTargets="EnsureNode">
+        <PropertyGroup>
+            <DefaultNpmNotFoundError>Global npm module path not found. Please set the 'CustomNpmPath' property in your project file.</DefaultNpmNotFoundError>
+            <CustomNpmNotFoundError>Invalid custom npm module path ('$(CustomNpmPath)').</CustomNpmNotFoundError>
+            <NpmGetPrefix>""$(NodePath)\npm.cmd" config get prefix"</NpmGetPrefix>
+        </PropertyGroup>
+        <Message Text="Ensuring global npm path" Importance="low" />
+
+        <Error Condition=" '$(CustomNpmPath)' != '' AND !Exists('$(CustomNpmPath)')" Text="'$(CustomNpmNotFoundError)'" />
+        <PropertyGroup Condition=" '$(CustomNpmPath)' != '' ">
+            <NpmPath>$(CustomNpmPath)</NpmPath>
+        </PropertyGroup>
+
+        <Exec Command="$(WINDIR)\system32\cmd.exe /C $(NpmGetPrefix)"
+            ContinueOnError="true"
+            IgnoreExitCode="true"
+            ConsoleToMsBuild="true"
+            Condition="!Exists('$(NpmPath)')">
+            <Output TaskParameter="ExitCode" PropertyName="ErrorCode"/>
+            <Output TaskParameter="ConsoleOutput" PropertyName="NpmPath" />
+        </Exec>
+        <Error Condition=" '$(ErrorCode)' != '' AND '$(ErrorCode)' != '0' " Text="'$(DefaultNpmNotFoundError)'" />
+
+        <Message Text="Npm path is: '$(NpmPath)'" />
+    </Target>
+<!-- vim: set ft=xml sw=4 :-->
+</Project>
