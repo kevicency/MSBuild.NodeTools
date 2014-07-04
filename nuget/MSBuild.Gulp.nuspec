@@ -12,7 +12,7 @@
     <tags>Gulp MSBuild</tags>
   </metadata>
   <files>
-    <file src="build\*.Node.*" target="build\" />
+    <file src="build\*.Gulp.*" target="build\" />
     <file src="README.md" target="content\README.md" />
   </files>
 </package>
