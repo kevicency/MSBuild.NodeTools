@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>MSBuild.Node</id>
+    <title>MSBuild.Node</title>
+    <version>0.2.0</version>
+    <authors>Kevin Mees</authors>
+    <owners>Kevin Mees</owners>
+    <projectUrl>http://github.com/kmees/MSBuild.NodeTools</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Core dependency for other MSBuild.NodeTools targets</description>
+    <tags>Node MSBuild</tags>
+  </metadata>
+  <files>
+    <file src="build\*.Node.*" target="build\" />
+    <file src="README.md" target="content\README.md" />
+  </files>
+</package>
