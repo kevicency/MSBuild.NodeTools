@@ -10,9 +10,12 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Run a gulp task as a MSBuild task</description>
     <tags>Gulp MSBuild</tags>
+    <dependencies>
+      <dependency id="MSBuild.Node" version="(,1.0]" />
+    </dependencies>
   </metadata>
   <files>
-    <file src="build\*.Gulp.*" target="build\" />
-    <file src="README.md" target="content\README.md" />
+    <file src="build/*.Gulp.*" target="build/" />
+    <file src="README.md" target="README.md" />
   </files>
 </package>

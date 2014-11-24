@@ -8,14 +8,14 @@
     <owners>Kevin Mees</owners>
     <projectUrl>http://github.com/kmees/MSBuild.NodeTools</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Run a bower command as a MSBuild task</description>
+    <description>Run a npm command as a MSBuild task</description>
     <tags>Npm MSBuild</tags>
     <dependencies>
       <dependency id="MSBuild.Node" version="(,1.0]" />
     </dependencies>
   </metadata>
   <files>
-    <file src="build\*.Npm.*" target="build\" />
-    <file src="README.md" target="content\README.md" />
+    <file src="build/*.Npm.*" target="build/" />
+    <file src="README.md" target="README.md" />
   </files>
 </package>

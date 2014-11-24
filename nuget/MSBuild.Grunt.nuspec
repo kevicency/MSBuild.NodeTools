@@ -15,7 +15,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="build\*.Grunt.*" target="build\" />
-    <file src="README.md" target="content\README.md" />
+    <file src="build/*.Grunt.*" target="build/" />
+    <file src="README.md" target="README.md" />
   </files>
 </package>

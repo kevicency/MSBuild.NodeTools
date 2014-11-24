@@ -12,7 +12,7 @@
     <tags>Node MSBuild</tags>
   </metadata>
   <files>
-    <file src="build\*.Node.*" target="build\" />
-    <file src="README.md" target="content\README.md" />
+    <file src="build/*.Node.*" target="build/" />
+    <file src="README.md" target="README.md" />
   </files>
 </package>
