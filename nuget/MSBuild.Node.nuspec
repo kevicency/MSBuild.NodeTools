@@ -1,21 +1,18 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>MSBuild.Bower</id>
-    <title>MSBuild.Bower</title>
+    <id>MSBuild.Node</id>
+    <title>MSBuild.Node</title>
     <version>0.2.1</version>
     <authors>Kevin Mees</authors>
     <owners>Kevin Mees</owners>
     <projectUrl>http://github.com/kmees/MSBuild.NodeTools</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Run a bower command as a MSBuild task</description>
-    <tags>Bower MSBuild</tags>
-    <dependencies>
-      <dependency id="MSBuild.Node" version="(,1.0]" />
-    </dependencies>
+    <description>Core dependency for other MSBuild.NodeTools targets</description>
+    <tags>Node MSBuild</tags>
   </metadata>
   <files>
-    <file src="build/*.Bower.*" target="build/" />
+    <file src="build/*.Node.*" target="build/" />
     <file src="README.md" target="README.md" />
   </files>
 </package>

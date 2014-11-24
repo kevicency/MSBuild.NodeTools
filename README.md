@@ -2,6 +2,8 @@ MSBuild.NodeTools
 ============
 > Run various Node tools as a MSBuild task.
 
+:warning: This is still a WIP, please report any issues. Thanks ! :warning:
+
 Installation
 ------------
 

@@ -3,7 +3,7 @@
   <metadata>
     <id>MSBuild.Grunt</id>
     <title>MSBuild.Grunt</title>
-    <version>0.2.0</version>
+    <version>0.2.1</version>
     <authors>Kevin Mees</authors>
     <owners>Kevin Mees</owners>
     <projectUrl>http://github.com/kmees/MSBuild.NodeTools</projectUrl>
@@ -15,7 +15,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="build\*.Grunt.*" target="build\" />
-    <file src="README.md" target="content\README.md" />
+    <file src="build/*.Grunt.*" target="build/" />
+    <file src="README.md" target="README.md" />
   </files>
 </package>

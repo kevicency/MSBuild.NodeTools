@@ -1,18 +1,21 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>MSBuild.Node</id>
-    <title>MSBuild.Node</title>
-    <version>0.2.0</version>
+    <id>MSBuild.Gulp</id>
+    <title>MSBuild.Gulp</title>
+    <version>0.2.1</version>
     <authors>Kevin Mees</authors>
     <owners>Kevin Mees</owners>
     <projectUrl>http://github.com/kmees/MSBuild.NodeTools</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Run a gulp task as a MSBuild task</description>
     <tags>Gulp MSBuild</tags>
+    <dependencies>
+      <dependency id="MSBuild.Node" version="(,1.0]" />
+    </dependencies>
   </metadata>
   <files>
-    <file src="build\*.Node.*" target="build\" />
-    <file src="README.md" target="content\README.md" />
+    <file src="build/*.Gulp.*" target="build/" />
+    <file src="README.md" target="README.md" />
   </files>
 </package>
