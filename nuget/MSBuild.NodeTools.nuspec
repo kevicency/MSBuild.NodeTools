@@ -11,10 +11,10 @@
     <description>Run a multitude of node tools as a MSBuild task</description>
     <tags>Bower Grunt Gulp Npm MSBuild</tags>
     <dependencies>
-      <dependency id="MSBuild.Npm" version="(,1.0]" />
-      <dependency id="MSBuild.Bower" version="(,1.0]" />
-      <dependency id="MSBuild.Gulp" version="(,1.0]" />
-      <dependency id="MSBuild.Grunt" version="(,1.0]" />
+      <dependency id="MSBuild.Npm" version="(,1.0.0]" />
+      <dependency id="MSBuild.Bower" version="(,1.0.0]" />
+      <dependency id="MSBuild.Gulp" version="(,1.0.0]" />
+      <dependency id="MSBuild.Grunt" version="(,1.0.0]" />
     </dependencies>
   </metadata>
   <files>

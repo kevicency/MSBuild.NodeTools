@@ -11,7 +11,7 @@
     <description>Run a bower command as a MSBuild task</description>
     <tags>Bower MSBuild</tags>
     <dependencies>
-      <dependency id="MSBuild.Node" version="(,1.0]" />
+      <dependency id="MSBuild.Node" version="(,1.0.0]" />
     </dependencies>
   </metadata>
   <files>
