@@ -1,5 +1,6 @@
 MSBuild.NodeTools
 ============
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/kmees/MSBuild.NodeTools?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 > Run various Node tools as a MSBuild task.
 
 :warning: This is still a WIP, please report any issues. Thanks ! :warning:
