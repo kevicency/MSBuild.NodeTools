@@ -58,6 +58,11 @@ Configuration
 There are three configuration properties you can overwrite in the `.csproj` file 
 **after** importing `MSBuild.*.props` but **before** importing `MSBuild.*.targets`.
 
+### MSBuild.Node
+
+  * `CustomNodePath`: Path to the *Node* executable. Defaults to `$(NODEJS)`.
+  * `CustomNpmPath`: Path to npm executables like *Grunt* and *Gulp*. Defaults to `$(HOMEDRIVE)$(HOMEPATH)\AppData\Roaming\npm`.
+
 ### MSBuild.Npm
 
   * `NpmFile`: Path to the npm file. Defaults to `$(MSBuildProjectDirectory)\package.json`.
