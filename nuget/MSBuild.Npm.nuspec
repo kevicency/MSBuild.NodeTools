@@ -3,7 +3,7 @@
   <metadata>
     <id>MSBuild.Npm</id>
     <title>MSBuild.Npm</title>
-    <version>0.2.1</version>
+    <version>0.2.2</version>
     <authors>Kevin Mees</authors>
     <owners>Kevin Mees</owners>
     <projectUrl>http://github.com/kmees/MSBuild.NodeTools</projectUrl>
@@ -11,7 +11,7 @@
     <description>Run a npm command as a MSBuild task</description>
     <tags>Npm MSBuild</tags>
     <dependencies>
-      <dependency id="MSBuild.Node" version="(,1.0]" />
+      <dependency id="MSBuild.Node" version="(,1.0.0]" />
     </dependencies>
   </metadata>
   <files>

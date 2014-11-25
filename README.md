@@ -1,5 +1,6 @@
 MSBuild.NodeTools
 ============
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/kmees/MSBuild.NodeTools?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 > Run various Node tools as a MSBuild task.
 
 :warning: This is still a WIP, please report any issues. Thanks ! :warning:
@@ -56,6 +57,11 @@ Configuration
 
 There are three configuration properties you can overwrite in the `.csproj` file 
 **after** importing `MSBuild.*.props` but **before** importing `MSBuild.*.targets`.
+
+### MSBuild.Node
+
+  * `CustomNodePath`: Path to the *Node* executable. Defaults to `$(NODEJS)`.
+  * `CustomNpmPath`: Path to npm executables like *Grunt* and *Gulp*. Defaults to `$(HOMEDRIVE)$(HOMEPATH)\AppData\Roaming\npm`.
 
 ### MSBuild.Npm
 
