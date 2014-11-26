@@ -20,10 +20,10 @@
             <Output TaskParameter="ExitCode" PropertyName="ErrorCode"/>
             <Output TaskParameter="ConsoleOutput" PropertyName="NodeExecutable" />
         </Exec>
-        <PropertyGroup Condition="'$(ErrorCode)' == '0'">
+        <PropertyGroup Condition=" '$(ErrorCode)' == '0' ">
             <NodePath>$([System.IO.Path]::GetDirectoryName('$(NodeExecutable)'))</NodePath>
         </PropertyGroup>
-        <Error Condition="'$(NodePath)' == ''" Text="'$(DefaultNodeNotFoundError)'" />
+        <Error Condition=" '$(NodePath)' == '' " Text="'$(DefaultNodeNotFoundError)'" />
 
         <Message Text="NodeJS path is: '$(NodePath)'" />
     </Target>
@@ -45,7 +45,7 @@
             ContinueOnError="true"
             IgnoreExitCode="true"
             ConsoleToMsBuild="true"
-            Condition="!Exists('$(NpmPath)')">
+            Condition=" !Exists('$(NpmPath)') ">
             <Output TaskParameter="ExitCode" PropertyName="ErrorCode"/>
             <Output TaskParameter="ConsoleOutput" PropertyName="NpmPath" />
         </Exec>

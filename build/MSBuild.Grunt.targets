@@ -13,7 +13,7 @@
             ContinueOnError="true"
             IgnoreExitCode="true"
             ConsoleToMsBuild="true"
-            Condition="!Exists('$(GruntExecutable)')">
+            Condition=" !Exists('$(GruntExecutable)') ">
             <Output TaskParameter="ExitCode" PropertyName="ErrorCode"/>
             <Output TaskParameter="ConsoleOutput" PropertyName="GruntExecutable" />
         </Exec>
@@ -29,7 +29,7 @@
     <Target Name="RunGrunt" 
         DependsOnTargets="EnsureNpm;EnsureGrunt" 
         AfterTargets="PrepareForBuild"
-        Condition="Exists('$(GruntFile)')" >
+        Condition=" Exists('$(GruntFile)') " >
         <Exec Command="$(RunGruntCmd)"
             ContinueOnError="true"
             IgnoreExitCode="true"
@@ -40,8 +40,8 @@
             <Output TaskParameter="Lines" ItemName="GruntOutLines"/> 
         </ReadLinesFromFile>
         <Delete Files="$(GruntOut)"/>
-        <Warning Condition="'$(ErrorCode)' != '0'" Text="%(GruntOutLines.Identity)" />
-        <Error Condition="'$(ErrorCode)' != '0'" Text="$(GruntTaskError)" />
+        <Warning Condition=" '$(ErrorCode)' != '0' " Text="%(GruntOutLines.Identity)" />
+        <Error Condition=" '$(ErrorCode)' != '0' " Text="$(GruntTaskError)" />
     </Target>
 <!-- vim: set ft=xml sw=4 :-->
 </Project>

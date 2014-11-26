@@ -11,7 +11,7 @@
             ContinueOnError="true"
             IgnoreExitCode="true"
             ConsoleToMsBuild="true"
-            Condition="!Exists('$(BowerExecutable)')">
+            Condition=" !Exists('$(BowerExecutable)') ">
             <Output TaskParameter="ExitCode" PropertyName="ErrorCode"/>
             <Output TaskParameter="ConsoleOutput" PropertyName="BowerExecutable" />
         </Exec>
@@ -24,7 +24,7 @@
         <Message Text="Bower found: '$(BowerExecutable)'" />
     </Target>
 
-    <Target Name="RunBower" DependsOnTargets="EnsureNpm;EnsureBower" BeforeTargets="PrepareForBuild" Condition="Exists('$(BowerFile)')">
+    <Target Name="RunBower" DependsOnTargets="EnsureNpm;EnsureBower" BeforeTargets="PrepareForBuild" Condition=" Exists('$(BowerFile)') ">
         <Exec Command="$(RunBowerCmd)"
             CustomErrorRegularExpression="E[A-Z]+"/>
     </Target>

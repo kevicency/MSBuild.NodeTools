@@ -13,7 +13,7 @@
             ContinueOnError="true"
             IgnoreExitCode="true"
             ConsoleToMsBuild="true"
-            Condition="!Exists('$(GulpExecutable)')">
+            Condition=" !Exists('$(GulpExecutable)') ">
             <Output TaskParameter="ExitCode" PropertyName="ErrorCode"/>
             <Output TaskParameter="ConsoleOutput" PropertyName="GulpExecutable" />
         </Exec>
@@ -29,7 +29,7 @@
     <Target Name="RunGulp"
         DependsOnTargets="EnsureNpm;EnsureGulp"
         AfterTargets="PrepareForBuild"
-        Condition="Exists('$(GulpFile)')" >
+        Condition=" Exists('$(GulpFile)') " >
         <Exec Command="$(RunGulpCmd)"
             ContinueOnError="true"
             IgnoreExitCode="true"
@@ -40,8 +40,8 @@
             <Output TaskParameter="Lines" ItemName="GulpOutLines"/>
         </ReadLinesFromFile>
         <Delete Files="$(GulpOut)"/>
-        <Warning Condition="'$(ErrorCode)' != '0'" Text="%(GulpOutLines.Identity)" />
-        <Error Condition="'$(ErrorCode)' != '0'" Text="$(GulpTaskError)" />
+        <Warning Condition=" '$(ErrorCode)' != '0' " Text="%(GulpOutLines.Identity)" />
+        <Error Condition=" '$(ErrorCode)' != '0' " Text="$(GulpTaskError)" />
     </Target>
 <!-- vim: set ft=xml sw=4 :-->
 </Project>
