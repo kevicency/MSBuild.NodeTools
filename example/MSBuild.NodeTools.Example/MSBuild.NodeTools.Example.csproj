@@ -7,6 +7,11 @@
   <Import Project="..\..\build\MSBuild.Bower.props" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <!-- Local NodeJS installation -->
+    <LocalNodePath>C:\path\to\nodejs</LocalNodePath>
+    <LocalNodeModulePath>C:\path\to\node_modules\.bin</LocalNodeModulePath>
+  </PropertyGroup>
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{94FEC95F-DA4F-4F26-8B28-A290A0E84C7A}</ProjectGuid>
