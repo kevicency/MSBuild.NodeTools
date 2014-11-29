@@ -61,14 +61,15 @@ There are various configuration properties you can overwrite in the `.csproj` fi
 ### MSBuild.Node
 
 MSBuild.Node tries to find the global *NodeJS* by reading the `NODEJS` environment
-variable and executing `where node` when the environment variable is not available.
+variable first and then executing `where node` when the it is unset.
 It also tries to locate the global *npm* folder.  The global paths are stored in
+the following properties which should **not** be overriden.
 
-  * `GlobalNodePath`: Defaults to $(NODEJS) or `where node`
+  * `GlobalNodePath`: Defaults to `$(NODEJS)` or `where node`
   * `GlobalNodeModulePath`: Defaults to `$(HOMEDRIVE)$(HOMEPATH)\AppData\Roaming\npm`
 
 If no global *NodeJS* installation is available or if a local installation should 
-be used instead, set these properties:
+be used instead, set these properties instead:
 
   * `LocalNodePath`: Path to the local *NodeJS* installation.
   * `LocalNodeModulePath`: Path to the local npm modules folder.
