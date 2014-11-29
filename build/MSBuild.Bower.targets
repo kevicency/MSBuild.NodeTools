@@ -2,8 +2,9 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <Target Name="EnsureBower">
         <PropertyGroup>
-            <BowerNotFoundError>Bower installation not found. Please set the 'NpmPath' property in your project file that contains the bower binary.</BowerNotFoundError>
-            <BowerExecutable>$(NpmPath)\bower.cmd</BowerExecutable>
+            <BowerNotFoundError>Bower module not found. Please install Bower in the node module path '$(NodeModulePath)'.</BowerNotFoundError>
+            <BowerExecutable>$(NodeModulePath)\bower.cmd</BowerExecutable>
+            <BowerExitCode>0</BowerExitCode>
         </PropertyGroup>
         <Message Text="Ensuring Bower is installed" Importance="low" />
 
@@ -11,20 +12,23 @@
             ContinueOnError="true"
             IgnoreExitCode="true"
             ConsoleToMsBuild="true"
-            Condition="!Exists('$(BowerExecutable)')">
-            <Output TaskParameter="ExitCode" PropertyName="ErrorCode"/>
+            Condition=" !Exists('$(BowerExecutable)') ">
+            <Output TaskParameter="ExitCode" PropertyName="BowerExitCode"/>
             <Output TaskParameter="ConsoleOutput" PropertyName="BowerExecutable" />
         </Exec>
-        <Error Condition=" '$(ErrorCode)' != '0' " Text="'$(BowerNotFoundError)'" />
+        <Error Condition=" '$(BowerExitCode)' != '0' " Text="'$(BowerNotFoundError)'" />
 
         <PropertyGroup>
-            <RunBowerCmd>"$(BowerExecutable)" $(BowerCommand)</RunBowerCmd>
+            <RunBowerCmd>$(EnsureNodeInPathCmd) "$(BowerExecutable)" $(BowerCommand)</RunBowerCmd>
         </PropertyGroup>
 
         <Message Text="Bower found: '$(BowerExecutable)'" />
     </Target>
 
-    <Target Name="RunBower" DependsOnTargets="EnsureNpm;EnsureBower" BeforeTargets="PrepareForBuild" Condition="Exists('$(BowerFile)')">
+    <Target Name="RunBower" 
+        DependsOnTargets="EnsureNodeModules;EnsureBower"
+        BeforeTargets="PrepareForBuild"
+        Condition=" Exists('$(BowerFile)') ">
         <Exec Command="$(RunBowerCmd)"
             CustomErrorRegularExpression="E[A-Z]+"/>
     </Target>

@@ -55,13 +55,23 @@ all the tools and must always be included.
 Configuration
 -------------
 
-There are three configuration properties you can overwrite in the `.csproj` file 
+There are various configuration properties you can overwrite in the `.csproj` file 
 **after** importing `MSBuild.*.props` but **before** importing `MSBuild.*.targets`.
 
 ### MSBuild.Node
 
-  * `CustomNodePath`: Path to the *Node* executable. Defaults to `$(NODEJS)`.
-  * `CustomNpmPath`: Path to npm executables like *Grunt* and *Gulp*. Defaults to `$(HOMEDRIVE)$(HOMEPATH)\AppData\Roaming\npm`.
+MSBuild.Node tries to find the global *NodeJS* by reading the `NODEJS` environment
+variable and executing `where node` when the environment variable is not available.
+It also tries to locate the global *npm* folder.  The global paths are stored in
+
+  * `GlobalNodePath`: Defaults to $(NODEJS) or `where node`
+  * `GlobalNodeModulePath`: Defaults to `$(HOMEDRIVE)$(HOMEPATH)\AppData\Roaming\npm`
+
+If no global *NodeJS* installation is available or if a local installation should 
+be used instead, set these properties:
+
+  * `LocalNodePath`: Path to the local *NodeJS* installation.
+  * `LocalNodeModulePath`: Path to the local npm modules folder.
 
 ### MSBuild.Npm
 
