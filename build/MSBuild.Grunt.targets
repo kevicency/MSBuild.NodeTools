@@ -2,10 +2,11 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <Target Name="EnsureGrunt">
         <PropertyGroup>
-            <GruntNotFoundError>Grunt installation not found. Please set the 'NpmPath' property in your project file that contains the grunt binary.</GruntNotFoundError>
+            <GruntNotFoundError>Grunt module not found. Please install Grunt in the node module path '$(NodeModulePath)'.</GruntNotFoundError>
             <GruntTaskError>Error running grunt task '$(GruntTask)'. See Warnings for details.</GruntTaskError>
-            <GruntExecutable>$(NpmPath)\grunt.cmd</GruntExecutable>
+            <GruntExecutable>$(NodeModulePath)\grunt.cmd</GruntExecutable>
             <GruntOut>$([System.IO.Path]::GetTempFileName())</GruntOut>
+            <GruntExitCode>0</GruntExitCode>
         </PropertyGroup>
         <Message Text="Ensuring Grunt is installed" Importance="low" />
 
@@ -14,10 +15,10 @@
             IgnoreExitCode="true"
             ConsoleToMsBuild="true"
             Condition=" !Exists('$(GruntExecutable)') ">
-            <Output TaskParameter="ExitCode" PropertyName="ErrorCode"/>
+            <Output TaskParameter="ExitCode" PropertyName="GruntExitCode"/>
             <Output TaskParameter="ConsoleOutput" PropertyName="GruntExecutable" />
         </Exec>
-        <Error Condition=" '$(ErrorCode)' != '0' " Text="'$(GruntNotFoundError)'" />
+        <Error Condition=" '$(GruntExitCode)' != '0' " Text="'$(GruntNotFoundError)'" />
 
         <PropertyGroup>
             <RunGruntCmd>"$(GruntExecutable)" --no-color --gruntfile "$(GruntFile)" $(GruntTask) > "$(GruntOut)"</RunGruntCmd>
@@ -27,21 +28,21 @@
     </Target>
 
     <Target Name="RunGrunt" 
-        DependsOnTargets="EnsureNpm;EnsureGrunt" 
+        DependsOnTargets="EnsureNodeModules;EnsureGrunt" 
         AfterTargets="PrepareForBuild"
         Condition=" Exists('$(GruntFile)') " >
         <Exec Command="$(RunGruntCmd)"
             ContinueOnError="true"
             IgnoreExitCode="true"
             WorkingDirectory="$(GruntWorkingDirectory)" >
-            <Output TaskParameter="ExitCode" PropertyName="ErrorCode"/>
+            <Output TaskParameter="ExitCode" PropertyName="GruntExitCode"/>
         </Exec>
         <ReadLinesFromFile File="$(GruntOut)">
             <Output TaskParameter="Lines" ItemName="GruntOutLines"/> 
         </ReadLinesFromFile>
         <Delete Files="$(GruntOut)"/>
-        <Warning Condition=" '$(ErrorCode)' != '0' " Text="%(GruntOutLines.Identity)" />
-        <Error Condition=" '$(ErrorCode)' != '0' " Text="$(GruntTaskError)" />
+        <Warning Condition=" '$(GruntExitCode)' != '0' " Text="%(GruntOutLines.Identity)" />
+        <Error Condition=" '$(GruntExitCode)' != '0' " Text="$(GruntTaskError)" />
     </Target>
 <!-- vim: set ft=xml sw=4 :-->
 </Project>

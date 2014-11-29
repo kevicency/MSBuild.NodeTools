@@ -2,10 +2,11 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <Target Name="EnsureGulp">
         <PropertyGroup>
-            <GulpNotFoundError>Gulp installation not found. Please set the 'NpmPath' property in your project file that contains the gulp binary.</GulpNotFoundError>
+            <GulpNotFoundError>Gulp module not found. Please install Gulp in the node module path '$(NodeModulePath)'.</GulpNotFoundError>
             <GulpTaskError>Error running gulp task '$(GulpTask)'. See Warnings for details.</GulpTaskError>
-            <GulpExecutable>$(NpmPath)\gulp.cmd</GulpExecutable>
+            <GulpExecutable>$(NodeModulePath)\gulp.cmd</GulpExecutable>
             <GulpOut>$([System.IO.Path]::GetTempFileName())</GulpOut>
+            <GulpExitCode>0</GulpExitCode>
         </PropertyGroup>
         <Message Text="Ensuring Gulp is installed" Importance="low" />
 
@@ -14,10 +15,10 @@
             IgnoreExitCode="true"
             ConsoleToMsBuild="true"
             Condition=" !Exists('$(GulpExecutable)') ">
-            <Output TaskParameter="ExitCode" PropertyName="ErrorCode"/>
+            <Output TaskParameter="ExitCode" PropertyName="GulpExitCode"/>
             <Output TaskParameter="ConsoleOutput" PropertyName="GulpExecutable" />
         </Exec>
-        <Error Condition=" '$(ErrorCode)' != '0' " Text="'$(GulpNotFoundError)'" />
+        <Error Condition=" '$(GulpExitCode)' != '0' " Text="'$(GulpNotFoundError)'" />
 
         <PropertyGroup>
             <RunGulpCmd>"$(GulpExecutable)" $(GulpTask) > "$(GulpOut)"</RunGulpCmd>
@@ -27,21 +28,21 @@
     </Target>
 
     <Target Name="RunGulp"
-        DependsOnTargets="EnsureNpm;EnsureGulp"
+        DependsOnTargets="EnsureNodeModules;EnsureGulp"
         AfterTargets="PrepareForBuild"
         Condition=" Exists('$(GulpFile)') " >
         <Exec Command="$(RunGulpCmd)"
             ContinueOnError="true"
             IgnoreExitCode="true"
             WorkingDirectory="$(GulpWorkingDirectory)" >
-            <Output TaskParameter="ExitCode" PropertyName="ErrorCode"/>
+            <Output TaskParameter="ExitCode" PropertyName="GulpExitCode"/>
         </Exec>
         <ReadLinesFromFile File="$(GulpOut)">
             <Output TaskParameter="Lines" ItemName="GulpOutLines"/>
         </ReadLinesFromFile>
         <Delete Files="$(GulpOut)"/>
-        <Warning Condition=" '$(ErrorCode)' != '0' " Text="%(GulpOutLines.Identity)" />
-        <Error Condition=" '$(ErrorCode)' != '0' " Text="$(GulpTaskError)" />
+        <Warning Condition=" '$(GulpExitCode)' != '0' " Text="%(GulpOutLines.Identity)" />
+        <Error Condition=" '$(GulpExitCode)' != '0' " Text="$(GulpTaskError)" />
     </Target>
 <!-- vim: set ft=xml sw=4 :-->
 </Project>
