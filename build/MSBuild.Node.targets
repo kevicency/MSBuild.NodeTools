@@ -5,12 +5,14 @@
             <UnknownNodePath>Global NodeJS installation not found. Please set the 'NODEJS' environment variable for a global installation or set the 'LocalNodePath' property in your project file for a local installation.</UnknownNodePath>
             <InvalidGlobalNodePath>Invalid global node path.</InvalidGlobalNodePath>
             <InvalidLocalNodePath>Invalid local node path.</InvalidLocalNodePath>
+            <EnsureNodeInPathCmd></EnsureNodeInPathCmd>
         </PropertyGroup>
         <Message Text="Ensuring NodeJS is installed" Importance="low" />
 
         <Error Condition=" '$(LocalNodePath)' != '' AND !Exists('$(LocalNodePath)')" Text="$(InvalidLocalNodePath) $(LocalNodePath)" />
         <PropertyGroup Condition=" '$(LocalNodePath)' != '' ">
             <NodePath>$(LocalNodePath)</NodePath>
+            <EnsureNodeInPathCmd>SETLOCAL &amp; SET PATH=$(NodePath);%PATH% &amp;</EnsureNodeInPathCmd>
         </PropertyGroup>
 
         <Exec Command="$(WINDIR)\system32\where.exe node"

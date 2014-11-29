@@ -21,7 +21,7 @@
         <Error Condition=" '$(GruntExitCode)' != '0' " Text="'$(GruntNotFoundError)'" />
 
         <PropertyGroup>
-            <RunGruntCmd>"$(GruntExecutable)" --no-color --gruntfile "$(GruntFile)" $(GruntTask) > "$(GruntOut)"</RunGruntCmd>
+            <RunGruntCmd>$(EnsureNodeInPathCmd) "$(GruntExecutable)" --no-color --gruntfile "$(GruntFile)" $(GruntTask) > "$(GruntOut)"</RunGruntCmd>
         </PropertyGroup>
 
         <Message Text="Grunt found: '$(GruntExecutable)'" />

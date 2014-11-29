@@ -19,7 +19,7 @@
         <Error Condition=" '$(BowerExitCode)' != '0' " Text="'$(BowerNotFoundError)'" />
 
         <PropertyGroup>
-            <RunBowerCmd>"$(BowerExecutable)" $(BowerCommand)</RunBowerCmd>
+            <RunBowerCmd>$(EnsureNodeInPathCmd) "$(BowerExecutable)" $(BowerCommand)</RunBowerCmd>
         </PropertyGroup>
 
         <Message Text="Bower found: '$(BowerExecutable)'" />

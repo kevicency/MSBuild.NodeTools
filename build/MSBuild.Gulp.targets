@@ -21,7 +21,7 @@
         <Error Condition=" '$(GulpExitCode)' != '0' " Text="'$(GulpNotFoundError)'" />
 
         <PropertyGroup>
-            <RunGulpCmd>"$(GulpExecutable)" $(GulpTask) > "$(GulpOut)"</RunGulpCmd>
+            <RunGulpCmd>$(EnsureNodeInPathCmd) "$(GulpExecutable)" $(GulpTask) > "$(GulpOut)"</RunGulpCmd>
         </PropertyGroup>
 
         <Message Text="Gulp found: '$(GulpExecutable)'" />
