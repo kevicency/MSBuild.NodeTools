@@ -61,7 +61,7 @@ There are various configuration properties you can overwrite in the `.csproj` fi
 ### MSBuild.Node
 
 MSBuild.Node tries to find the global *NodeJS* by reading the `NODEJS` environment
-variable first and then executing `where node` when the it is unset.
+variable first and then executing `where node` when it is unset.
 It also tries to locate the global *npm* folder.  The global paths are stored in
 the following properties which should **not** be overriden.
 
@@ -94,4 +94,8 @@ be used instead, set these properties instead:
 
   * `GruntFile`: Path to gruntfile. Defaults to `$(MSBuildProjectDirectory)\gruntfile.[js|coffee]`.
   * `GruntWorkingDirectory`: Directory in which context the grunt task gets executed. Defaults to `$(MSBuildProjectDirectory)`.
-  * `GruntTask`: Grunt task that gets executed. Defaults to `build-$(Configuration)`.
+  * `GruntBuildTask`: Grunt task that gets executed on build. Defaults to `build-$(Configuration)`.
+  * `GruntCleanTask`: Grunt task that gets executed on clean. Defaults to `clean`.
+
+Release History
+---------------
