@@ -3,6 +3,9 @@
     <PropertyGroup>
         <GruntFile>$(MSBuildProjectDirectory)\Gruntfile.js</GruntFile>
         <GruntWorkingDirectory>$(MSBuildProjectDirectory)</GruntWorkingDirectory>
+        <GruntBuildTask>build-$(Configuration)</GruntBuildTask>
+        <GruntCleanTask>clean</GruntCleanTask>
+        <!-- for backwards compatibility -->
         <GruntTask>build-$(Configuration)</GruntTask>
     </PropertyGroup>
     <PropertyGroup Condition="Exists('$(MSBuildProjectDirectory)\Gruntfile.coffee')">
