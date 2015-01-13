@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target Name="GulpBuild"
+        AfterTargets="PrepareForBuild" >
+        <PropertyGroup Condition="'$(GulpTask)' == ''">
+            <GulpTask>$(GulpBuildTask)</GulpTask>
+        </PropertyGroup>
+    </Target>
+
+    <Target Name="GulpClean"
+        AfterTargets="Clean" >
+        <PropertyGroup>
+            <GulpTask Condition="'$(GulpCleanTask)' != ''" >$(GulpCleanTask)</GulpTask>
+            <GulpTask Condition="'$(GulpCleanTask)' == ''" ></GulpTask>
+        </PropertyGroup>
+    </Target>
+
     <Target Name="EnsureGulp">
         <PropertyGroup>
             <GulpNotFoundError>Gulp module not found. Please install Gulp in the node module path '$(NodeModulePath)'.</GulpNotFoundError>
@@ -29,8 +44,8 @@
 
     <Target Name="RunGulp"
         DependsOnTargets="EnsureNodeModules;EnsureGulp"
-        AfterTargets="PrepareForBuild"
-        Condition=" Exists('$(GulpFile)') " >
+        AfterTargets="GulpBuild,GulpClean"
+        Condition=" Exists('$(GulpFile)') And '$(GulpTask)' != '' " >
         <Exec Command="$(RunGulpCmd)"
             ContinueOnError="true"
             IgnoreExitCode="true"
