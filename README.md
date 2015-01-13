@@ -61,14 +61,15 @@ There are various configuration properties you can overwrite in the `.csproj` fi
 ### MSBuild.Node
 
 MSBuild.Node tries to find the global *NodeJS* by reading the `NODEJS` environment
-variable and executing `where node` when the environment variable is not available.
+variable first and then executing `where node` when it is unset.
 It also tries to locate the global *npm* folder.  The global paths are stored in
+the following properties which should **not** be overriden.
 
-  * `GlobalNodePath`: Defaults to $(NODEJS) or `where node`
+  * `GlobalNodePath`: Defaults to `$(NODEJS)` or `where node`
   * `GlobalNodeModulePath`: Defaults to `$(HOMEDRIVE)$(HOMEPATH)\AppData\Roaming\npm`
 
 If no global *NodeJS* installation is available or if a local installation should 
-be used instead, set these properties:
+be used instead, set these properties instead:
 
   * `LocalNodePath`: Path to the local *NodeJS* installation.
   * `LocalNodeModulePath`: Path to the local npm modules folder.
@@ -87,10 +88,19 @@ be used instead, set these properties:
 
   * `GulpFile`: Path to gulpfile. Defaults to `$(MSBuildProjectDirectory)\gulpfile.[js|coffee]`.
   * `GulpWorkingDirectory`: Directory in which context the gulp task gets executed. Defaults to `$(MSBuildProjectDirectory)`.
-  * `GulpTask`: Gulp task that gets executed. Defaults to `build-$(Configuration)`.
+  * `GulpBuildTask`: Gulp task that gets executed on build. Defaults to `build-$(Configuration)`.
+  * `GulpCleanTask`: Gulp task that gets executed on clean. Defaults to `clean`. Set it to an empty string if you do not want to run this task.
+  * `GulpTask`: is still supported due to backwards compatibility and does same as `GulpBuildTask`.
 
 ### MSBuild.Grunt
 
   * `GruntFile`: Path to gruntfile. Defaults to `$(MSBuildProjectDirectory)\gruntfile.[js|coffee]`.
   * `GruntWorkingDirectory`: Directory in which context the grunt task gets executed. Defaults to `$(MSBuildProjectDirectory)`.
-  * `GruntTask`: Grunt task that gets executed. Defaults to `build-$(Configuration)`.
+  * `GruntBuildTask`: Grunt task that gets executed on build. Defaults to `build-$(Configuration)`.
+  * `GruntCleanTask`: Grunt task that gets executed on clean. Defaults to `clean`. Set it to an empty string if you do not want to run this task.
+  * `GruntTask`: is still supported due to backwards compatibility and does same as `GruntBuildTask`.
+
+Release History
+---------------
+
+  * **v0.4.0**   MSBuild.Grunt and MSBuild.Gulp support `clean` target.
