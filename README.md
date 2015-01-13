@@ -88,14 +88,19 @@ be used instead, set these properties instead:
 
   * `GulpFile`: Path to gulpfile. Defaults to `$(MSBuildProjectDirectory)\gulpfile.[js|coffee]`.
   * `GulpWorkingDirectory`: Directory in which context the gulp task gets executed. Defaults to `$(MSBuildProjectDirectory)`.
-  * `GulpTask`: Gulp task that gets executed. Defaults to `build-$(Configuration)`.
+  * `GulpBuildTask`: Gulp task that gets executed on build. Defaults to `build-$(Configuration)`.
+  * `GulpCleanTask`: Gulp task that gets executed on clean. Defaults to `clean`. Set it to an empty string if you do not want to run this task.
+  * `GulpTask`: is still supported due to backwards compatibility and does same as `GulpBuildTask`.
 
 ### MSBuild.Grunt
 
   * `GruntFile`: Path to gruntfile. Defaults to `$(MSBuildProjectDirectory)\gruntfile.[js|coffee]`.
   * `GruntWorkingDirectory`: Directory in which context the grunt task gets executed. Defaults to `$(MSBuildProjectDirectory)`.
   * `GruntBuildTask`: Grunt task that gets executed on build. Defaults to `build-$(Configuration)`.
-  * `GruntCleanTask`: Grunt task that gets executed on clean. Defaults to `clean`.
+  * `GruntCleanTask`: Grunt task that gets executed on clean. Defaults to `clean`. Set it to an empty string if you do not want to run this task.
+  * `GruntTask`: is still supported due to backwards compatibility and does same as `GruntBuildTask`.
 
 Release History
 ---------------
+
+  * **v0.4.0**   MSBuild.Grunt and MSBuild.Gulp support `clean` target.
