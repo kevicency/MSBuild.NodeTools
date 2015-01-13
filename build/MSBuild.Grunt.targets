@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <Target Name="GruntBuild"
         AfterTargets="PrepareForBuild" >
-        <PropertyGroup>
+        <PropertyGroup Condition="'$(GruntTask)' == ''">
             <GruntTask>$(GruntBuildTask)</GruntTask>
         </PropertyGroup>
     </Target>
@@ -10,7 +10,8 @@
     <Target Name="GruntClean"
         AfterTargets="Clean" >
         <PropertyGroup>
-            <GruntTask>$(GruntCleanTask)</GruntTask>
+            <GruntTask Condition="'$(GruntCleanTask)' != ''" >$(GruntCleanTask)</GruntTask>
+            <GruntTask Condition="'$(GruntCleanTask)' == ''" ></GruntTask>
         </PropertyGroup>
     </Target>
 
@@ -39,13 +40,12 @@
         </PropertyGroup>
 
         <Message Text="Grunt found: '$(GruntExecutable)'" />
-        <Message Text="$(RunGruntCmd)" />
     </Target>
 
     <Target Name="RunGrunt" 
         DependsOnTargets="EnsureNodeModules;EnsureGrunt"
         AfterTargets="GruntBuild;GruntClean"
-        Condition=" Exists('$(GruntFile)') " >
+        Condition=" Exists('$(GruntFile)') And '$(GruntTask)' != '' " >
         <Exec Command="$(RunGruntCmd)"
             ContinueOnError="true"
             IgnoreExitCode="true"
