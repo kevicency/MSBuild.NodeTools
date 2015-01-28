@@ -38,7 +38,7 @@
 
     <Target Name="RunGruntBuild" 
         DependsOnTargets="EnsureNodeModules;EnsureGrunt"
-        AfterTargets="PrepareForBuild"
+        BeforeTargets="Build"
         Condition=" Exists('$(GruntFile)') AND '$(GruntBuildTask)' != '' " >
         <Exec Command="$(RunGruntBuildCmd)"
             ContinueOnError="true"
