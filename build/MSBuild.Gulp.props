@@ -5,7 +5,8 @@
         <GulpWorkingDirectory>$(MSBuildProjectDirectory)</GulpWorkingDirectory>
         <GulpBuildTask>build-$(Configuration)</GulpBuildTask>
         <GulpCleanTask>clean</GulpCleanTask>
-        <!-- for backwards compatibility -->
+
+        <!-- Deprecated -->
         <GulpTask></GulpTask>
     </PropertyGroup>
     <PropertyGroup Condition="Exists('$(MSBuildProjectDirectory)\gulpfile.coffee')">

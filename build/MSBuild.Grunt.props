@@ -5,7 +5,8 @@
         <GruntWorkingDirectory>$(MSBuildProjectDirectory)</GruntWorkingDirectory>
         <GruntBuildTask>build-$(Configuration)</GruntBuildTask>
         <GruntCleanTask>clean</GruntCleanTask>
-        <!-- for backwards compatibility -->
+
+        <!-- Deprecated -->
         <GruntTask></GruntTask>
     </PropertyGroup>
     <PropertyGroup Condition="Exists('$(MSBuildProjectDirectory)\Gruntfile.coffee')">
