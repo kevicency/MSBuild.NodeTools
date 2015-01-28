@@ -3,8 +3,6 @@
     <Target Name="EnsureGrunt">
         <PropertyGroup>
             <GruntNotFoundError>Grunt module not found. Please install Grunt in the node module path '$(NodeModulePath)'.</GruntNotFoundError>
-            <GruntBuildTaskError>Error running grunt task '$(GruntBuildTask)'. See Warnings for details.</GruntBuildTaskError>
-            <GruntCleanTaskError>Error running grunt task '$(GruntCleanTask)'. See Warnings for details.</GruntCleanTaskError>
             <GruntExecutable>$(NodeModulePath)\grunt.cmd</GruntExecutable>
             <GruntOut>$([System.IO.Path]::GetTempFileName())</GruntOut>
             <GruntExitCode>0</GruntExitCode>
@@ -23,14 +21,17 @@
         <Error Condition=" '$(GruntExitCode)' != '0' " Text="'$(GruntNotFoundError)'" />
 
         <!-- Deprecated Warning & Fallback -->
-        <Warning Condition=" '$(GruntTask)' != '' AND '$(GruntBuildTask)' == '' " Text="'$(GruntTaskDeprecationWarning)'" />
-        <PropertyGroup Condition=" '$(GruntTask)' != '' AND '$(GruntBuildTask)' == '' ">
+        <Warning Condition=" '$(GruntTask)' != '' " Text="'$(GruntTaskDeprecationWarning)'" />
+        <PropertyGroup Condition=" '$(GruntTask)' != '' ">
             <GruntBuildTask>$(GruntTask)</GruntBuildTask>
         </PropertyGroup>
 
         <PropertyGroup>
             <RunGruntBuildCmd>$(EnsureNodeInPathCmd) "$(GruntExecutable)" --no-color --gruntfile "$(GruntFile)" $(GruntBuildTask) > "$(GruntOut)"</RunGruntBuildCmd>
             <RunGruntCleanCmd>$(EnsureNodeInPathCmd) "$(GruntExecutable)" --no-color --gruntfile "$(GruntFile)" $(GruntCleanTask) > "$(GruntOut)"</RunGruntCleanCmd>
+
+            <GruntBuildTaskError>Error running grunt task '$(GruntBuildTask)'. See Warnings for details.</GruntBuildTaskError>
+            <GruntCleanTaskError>Error running grunt task '$(GruntCleanTask)'. See Warnings for details.</GruntCleanTaskError>
         </PropertyGroup>
 
         <Message Text="Grunt found: '$(GruntExecutable)'" />

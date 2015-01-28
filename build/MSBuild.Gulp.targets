@@ -3,8 +3,6 @@
     <Target Name="EnsureGulp">
         <PropertyGroup>
             <GulpNotFoundError>Gulp module not found. Please install Gulp in the node module path '$(NodeModulePath)'.</GulpNotFoundError>
-            <GulpBuildTaskError>Error running gulp task '$(GulpBuildTask)'. See Warnings for details.</GulpBuildTaskError>
-            <GulpCleanTaskError>Error running gulp task '$(GulpCleanTask)'. See Warnings for details.</GulpCleanTaskError>
             <GulpExecutable>$(NodeModulePath)\gulp.cmd</GulpExecutable>
             <GulpOut>$([System.IO.Path]::GetTempFileName())</GulpOut>
             <GulpExitCode>0</GulpExitCode>
@@ -23,14 +21,17 @@
         <Error Condition=" '$(GulpExitCode)' != '0' " Text="'$(GulpNotFoundError)'" />
 
         <!-- Deprecated Warning & Fallback -->
-        <Warning Condition=" '$(GulpTask)' != '' AND '$(GulpBuildTask)' == '' " Text="'$(GulpTaskDeprecationWarning)'" />
-        <PropertyGroup Condition=" '$(GulpTask)' != '' AND '$(GulpBuildTask)' == '' ">
+        <Warning Condition=" '$(GulpTask)' != '' " Text="'$(GulpTaskDeprecationWarning)'" />
+        <PropertyGroup Condition=" '$(GulpTask)' != '' ">
             <GulpBuildTask>$(GulpTask)</GulpBuildTask>
         </PropertyGroup>
 
         <PropertyGroup>
             <RunGulpBuildCmd>$(EnsureNodeInPathCmd) "$(GulpExecutable)" $(GulpBuildTask) > "$(GulpOut)"</RunGulpBuildCmd>
             <RunGulpCleanCmd>$(EnsureNodeInPathCmd) "$(GulpExecutable)" $(GulpCleanTask) > "$(GulpOut)"</RunGulpCleanCmd>
+
+            <GulpBuildTaskError>Error running gulp task '$(GulpBuildTask)'. See Warnings for details.</GulpBuildTaskError>
+            <GulpCleanTaskError>Error running gulp task '$(GulpCleanTask)'. See Warnings for details.</GulpCleanTaskError>
         </PropertyGroup>
 
         <Message Text="Gulp found: '$(GulpExecutable)'" />
