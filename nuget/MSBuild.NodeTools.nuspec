@@ -3,7 +3,7 @@
   <metadata>
     <id>MSBuild.NodeTools</id>
     <title>MSBuild.NodeTools</title>
-    <version>0.3.0</version>
+    <version>0.4.0</version>
     <authors>Kevin Mees</authors>
     <owners>Kevin Mees</owners>
     <projectUrl>http://github.com/kmees/MSBuild.NodeTools</projectUrl>
@@ -11,10 +11,10 @@
     <description>Run a multitude of node tools as a MSBuild task</description>
     <tags>Bower Grunt Gulp Npm MSBuild</tags>
     <dependencies>
-      <dependency id="MSBuild.Npm" version="(,1.0.0]" />
-      <dependency id="MSBuild.Bower" version="(,1.0.0]" />
-      <dependency id="MSBuild.Gulp" version="(,1.0.0]" />
-      <dependency id="MSBuild.Grunt" version="(,1.0.0]" />
+      <dependency id="MSBuild.Npm" version="[0.3.0,1.0.0]" />
+      <dependency id="MSBuild.Bower" version="[0.3.0,1.0.0]" />
+      <dependency id="MSBuild.Gulp" version="[0.3.0,1.0.0]" />
+      <dependency id="MSBuild.Grunt" version="[0.3.0,1.0.0]" />
     </dependencies>
   </metadata>
   <files>

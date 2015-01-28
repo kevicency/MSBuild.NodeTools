@@ -3,7 +3,11 @@
     <PropertyGroup>
         <GulpFile>$(MSBuildProjectDirectory)\gulpfile.js</GulpFile>
         <GulpWorkingDirectory>$(MSBuildProjectDirectory)</GulpWorkingDirectory>
-        <GulpTask>build-$(Configuration)</GulpTask>
+        <GulpBuildTask>build-$(Configuration)</GulpBuildTask>
+        <GulpCleanTask></GulpCleanTask>
+
+        <!-- Deprecated -->
+        <GulpTask></GulpTask>
     </PropertyGroup>
     <PropertyGroup Condition="Exists('$(MSBuildProjectDirectory)\gulpfile.coffee')">
         <GulpFile>$(MSBuildProjectDirectory)\gulpfile.coffee</GulpFile>

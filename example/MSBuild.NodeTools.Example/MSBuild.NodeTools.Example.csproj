@@ -6,10 +6,15 @@
   <Import Project="..\..\build\MSBuild.Grunt.props" />
   <Import Project="..\..\build\MSBuild.Bower.props" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <!-- Local NodeJS installation
   <PropertyGroup>
-    <!-- Local NodeJS installation -->
     <LocalNodePath>C:\path\to\nodejs</LocalNodePath>
     <LocalNodeModulePath>C:\path\to\node_modules\.bin</LocalNodeModulePath>
+  </PropertyGroup> -->
+  <!-- Set grunt/gulp clean tasks -->
+  <PropertyGroup>
+    <GulpCleanTask>clean</GulpCleanTask>
+    <GruntCleanTask>clean</GruntCleanTask>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -65,10 +70,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>rmdir /S /Q $(ProjectDir)bower_components
-rmdir /S /Q $(ProjectDir)node_modules
-del /F $(TargetDir)*.js
-</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -79,7 +82,7 @@ del /F $(TargetDir)*.js
   -->
   <Import Project="..\..\build\MSBuild.Node.targets" />
   <Import Project="..\..\build\MSBuild.Npm.targets" />
+  <Import Project="..\..\build\MSBuild.Bower.targets" />
   <Import Project="..\..\build\MSBuild.Gulp.targets" />
   <Import Project="..\..\build\MSBuild.Grunt.targets" />
-  <Import Project="..\..\build\MSBuild.Bower.targets" />
 </Project>
