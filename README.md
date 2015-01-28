@@ -90,7 +90,7 @@ be used instead, set these properties instead:
   * `GulpWorkingDirectory`: Directory in which context the gulp task gets executed. Defaults to `$(MSBuildProjectDirectory)`.
   * `GulpTask`: **Deprecated** See `GulpBuildTask`.
   * `GulpBuildTask`: Gulp task that gets executed on build. Defaults to `build-$(Configuration)`.
-  * `GulpCleanTask`: Gulp task that gets executed on clean. Defaults to `clean`. Set it to an empty string if you do not want to run this task.
+  * `GulpCleanTask`: Gulp task that gets executed on clean. Defaults to *unset*.
 
 ### MSBuild.Grunt
 
@@ -98,7 +98,7 @@ be used instead, set these properties instead:
   * `GruntWorkingDirectory`: Directory in which context the grunt task gets executed. Defaults to `$(MSBuildProjectDirectory)`.
   * `GruntTask`: **Deprecated** See `GruntBuildTask`.
   * `GruntBuildTask`: Grunt task that gets executed on build. Defaults to `build-$(Configuration)`.
-  * `GruntCleanTask`: Grunt task that gets executed on clean. Defaults to `clean`. Set it to an empty string if you do not want to run this task.
+  * `GruntCleanTask`: Grunt task that gets executed on clean. Defaults to *unset*.
 
 Release History
 ---------------

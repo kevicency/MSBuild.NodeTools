@@ -4,7 +4,7 @@
         <GruntFile>$(MSBuildProjectDirectory)\Gruntfile.js</GruntFile>
         <GruntWorkingDirectory>$(MSBuildProjectDirectory)</GruntWorkingDirectory>
         <GruntBuildTask>build-$(Configuration)</GruntBuildTask>
-        <GruntCleanTask>clean</GruntCleanTask>
+        <GruntCleanTask></GruntCleanTask>
 
         <!-- Deprecated -->
         <GruntTask></GruntTask>

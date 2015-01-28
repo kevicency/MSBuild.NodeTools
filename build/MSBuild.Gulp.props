@@ -4,7 +4,7 @@
         <GulpFile>$(MSBuildProjectDirectory)\gulpfile.js</GulpFile>
         <GulpWorkingDirectory>$(MSBuildProjectDirectory)</GulpWorkingDirectory>
         <GulpBuildTask>build-$(Configuration)</GulpBuildTask>
-        <GulpCleanTask>clean</GulpCleanTask>
+        <GulpCleanTask></GulpCleanTask>
 
         <!-- Deprecated -->
         <GulpTask></GulpTask>
