@@ -27,7 +27,7 @@
 
     <Target Name="RunBower" 
         DependsOnTargets="EnsureNodeModules;EnsureBower"
-        BeforeTargets="PrepareForBuild"
+        BeforeTargets="BeforeBuild"
         Condition=" Exists('$(BowerFile)') ">
         <Exec Command="$(RunBowerCmd)"
             CustomErrorRegularExpression="E[A-Z]+"/>
