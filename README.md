@@ -103,4 +103,8 @@ be used instead, set these properties instead:
 Release History
 ---------------
 
-  * **v0.4.0**   MSBuild.Grunt and MSBuild.Gulp support `clean` target.
+  * **v0.4.2** Performance Improvements  
+    * Run npm targets before `BeforeBuild`/`BeforeClean` instead of `PrepareForBuild`.
+    * Run bower targets before `BeforeBuild` instead of `PrepareForBuild`.
+  * **v0.4.1** Bugfixes
+  * **v0.4.0** MSBuild.Grunt and MSBuild.Gulp support `clean` target.
