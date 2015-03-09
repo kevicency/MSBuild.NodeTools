@@ -11,6 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Core dependency for other MSBuild.NodeTools targets</description>
     <tags>Node MSBuild</tags>
+    <developmentDependency>true</developmentDependency>
   </metadata>
   <files>
     <file src="build/*.Node.*" target="build/" />

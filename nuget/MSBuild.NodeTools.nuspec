@@ -11,6 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Run a multitude of node tools as a MSBuild task</description>
     <tags>Bower Grunt Gulp Npm MSBuild</tags>
+    <developmentDependency>true</developmentDependency>
     <dependencies>
       <dependency id="MSBuild.Npm" version="[0.3.0,1.0.0]" />
       <dependency id="MSBuild.Bower" version="[0.3.0,1.0.0]" />

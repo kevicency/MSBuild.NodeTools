@@ -11,6 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Run a grunt task as a MSBuild task</description>
     <tags>Grunt MSBuild</tags>
+    <developmentDependency>true</developmentDependency>
     <dependencies>
       <dependency id="MSBuild.Node" version="[0.3.0,1.0.0]" />
     </dependencies>
