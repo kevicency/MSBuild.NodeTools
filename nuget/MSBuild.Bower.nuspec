@@ -7,6 +7,7 @@
     <authors>Kevin Mees</authors>
     <owners>Kevin Mees</owners>
     <projectUrl>http://github.com/kmees/MSBuild.NodeTools</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/kmees/MSBuild.NodeTools/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Run a bower command as a MSBuild task</description>
     <tags>Bower MSBuild</tags>
