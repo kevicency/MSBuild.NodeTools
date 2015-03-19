@@ -27,8 +27,8 @@
         </PropertyGroup>
 
         <PropertyGroup>
-            <RunGruntBuildCmd>$(EnsureNodeInPathCmd) "$(GruntExecutable)" --no-color --gruntfile "$(GruntFile)" $(GruntBuildTask) > "$(GruntOut)"</RunGruntBuildCmd>
-            <RunGruntCleanCmd>$(EnsureNodeInPathCmd) "$(GruntExecutable)" --no-color --gruntfile "$(GruntFile)" $(GruntCleanTask) > "$(GruntOut)"</RunGruntCleanCmd>
+            <RunGruntBuildCmd>$(EnsureNodeInPathCmd) "$(GruntExecutable)" --no-color --gruntfile "$(GruntFile)" "$(GruntBuildTask)" > "$(GruntOut)"</RunGruntBuildCmd>
+            <RunGruntCleanCmd>$(EnsureNodeInPathCmd) "$(GruntExecutable)" --no-color --gruntfile "$(GruntFile)" "$(GruntCleanTask)" > "$(GruntOut)"</RunGruntCleanCmd>
 
             <GruntBuildTaskError>Error running grunt task '$(GruntBuildTask)'. See Warnings for details.</GruntBuildTaskError>
             <GruntCleanTaskError>Error running grunt task '$(GruntCleanTask)'. See Warnings for details.</GruntCleanTaskError>
