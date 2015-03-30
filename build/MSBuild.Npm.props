@@ -3,6 +3,7 @@
     <PropertyGroup>
         <NpmFile>$(MSBuildProjectDirectory)\package.json</NpmFile>
         <NpmCommand>install --loglevel error</NpmCommand>
+        <NpmWorkingDirectory>$(MSBuildProjectDirectory)</NpmWorkingDirectory>
     </PropertyGroup>
 <!-- vim: set ft=xml sw=4 :-->
 </Project>

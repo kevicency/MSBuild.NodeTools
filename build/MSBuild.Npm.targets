@@ -9,6 +9,7 @@
         </PropertyGroup>
 
         <Exec Command="$(RunNpmCmd)"
+            WorkingDirectory="$(NpmWorkingDirectory)"
             CustomErrorRegularExpression="(ERR!.*is not in the npm registry|Usage:)"/>
     </Target>
 <!-- vim: set ft=xml sw=4 :-->
