@@ -3,6 +3,8 @@
     <PropertyGroup>
         <BowerFile>$(MSBuildProjectDirectory)\bower.json</BowerFile>
         <BowerCommand>install</BowerCommand>
+        <LocalGitPath></LocalGitPath>
+        <GitPath></GitPath>
     </PropertyGroup>
 <!-- vim: set ft=xml sw=4 :-->
 </Project>
