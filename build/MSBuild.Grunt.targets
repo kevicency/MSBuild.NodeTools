@@ -37,9 +37,9 @@
         <Message Text="Grunt found: '$(GruntExecutable)'" />
     </Target>
 
-    <Target Name="RunGruntBuild" 
+    <Target Name="RunGruntBuild"
         DependsOnTargets="EnsureNodeModules;EnsureGrunt"
-        BeforeTargets="Build"
+        BeforeTargets="BeforeBuild"
         Condition=" Exists('$(GruntFile)') AND '$(GruntBuildTask)' != '' " >
         <Exec Command="$(RunGruntBuildCmd)"
             ContinueOnError="true"
@@ -48,16 +48,16 @@
             <Output TaskParameter="ExitCode" PropertyName="GruntExitCode"/>
         </Exec>
         <ReadLinesFromFile File="$(GruntOut)">
-            <Output TaskParameter="Lines" ItemName="GruntOutLines"/> 
+            <Output TaskParameter="Lines" ItemName="GruntOutLines"/>
         </ReadLinesFromFile>
         <Delete Files="$(GruntOut)"/>
         <Warning Condition=" '$(GruntExitCode)' != '0' " Text="%(GruntOutLines.Identity)" />
         <Error Condition=" '$(GruntExitCode)' != '0' " Text="$(GruntBuildTaskError)" />
     </Target>
 
-    <Target Name="RunGruntClean" 
+    <Target Name="RunGruntClean"
         DependsOnTargets="EnsureNodeModules;EnsureGrunt"
-        AfterTargets="Clean"
+        BeforeTargets="AfterClean"
         Condition=" Exists('$(GruntFile)') AND '$(GruntCleanTask)' != '' " >
         <Exec Command="$(RunGruntCleanCmd)"
             ContinueOnError="true"
@@ -66,7 +66,7 @@
             <Output TaskParameter="ExitCode" PropertyName="GruntExitCode"/>
         </Exec>
         <ReadLinesFromFile File="$(GruntOut)">
-            <Output TaskParameter="Lines" ItemName="GruntOutLines"/> 
+            <Output TaskParameter="Lines" ItemName="GruntOutLines"/>
         </ReadLinesFromFile>
         <Delete Files="$(GruntOut)"/>
         <Warning Condition=" '$(GruntExitCode)' != '0' " Text="%(GruntOutLines.Identity)" />
