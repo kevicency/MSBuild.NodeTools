@@ -107,6 +107,12 @@ be used instead, set these properties instead:
 Release History
 ---------------
 
+  * **v0.5.0**
+    * Bugfix for npm and bower working directory
+    * Support for local git when using bower
+    * :warning: Remove quotes around `GruntBuildTask` and `GruntCleanTask`. In case that breaks some,
+      please open an issue.
+    * Add `ConsoleToMsBuild` flag to *gulp* and *grunt* task
   * **v0.4.2** Performance Improvements  
     * Run npm targets before `BeforeBuild`/`BeforeClean` instead of `PrepareForBuild`.
     * Run bower targets before `BeforeBuild` instead of `PrepareForBuild`.
