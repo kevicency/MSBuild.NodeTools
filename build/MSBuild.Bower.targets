@@ -56,7 +56,6 @@
         </PropertyGroup>
 
         <Message Text="Bower found: '$(BowerExecutable)'" />
-        <Message Text="Bower File: '$(BowerFile)'" />
         <Message Text="Bower Working Directory: '$(BowerWorkingDirectory)'" />
     </Target>
 
