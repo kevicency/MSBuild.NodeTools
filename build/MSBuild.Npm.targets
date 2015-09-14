@@ -5,8 +5,11 @@
         BeforeTargets="BeforeBuild;BeforeClean"
         Condition=" Exists('$(NpmFile)') ">
         <PropertyGroup>
+            <NpmWorkingDirectory>$([System.IO.Path]::GetDirectoryName('$(NpmFile)'))</NpmWorkingDirectory>
             <RunNpmCmd>"$(NodePath)\npm" $(NpmCommand)</RunNpmCmd>
         </PropertyGroup>
+
+        <Message Text="Npm Working Directory: '$(NpmWorkingDirectory)'" />
 
         <Exec Command="$(RunNpmCmd)"
             WorkingDirectory="$(NpmWorkingDirectory)"
