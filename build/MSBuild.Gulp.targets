@@ -45,6 +45,7 @@
         <Exec Command="$(RunGulpBuildCmd)"
             ContinueOnError="true"
             IgnoreExitCode="true"
+            ConsoleToMsBuild="true"
             WorkingDirectory="$(GulpWorkingDirectory)" >
             <Output TaskParameter="ExitCode" PropertyName="GulpExitCode"/>
         </Exec>
