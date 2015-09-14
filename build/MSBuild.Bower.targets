@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target Name="EnsureGit">
+        <PropertyGroup>
+            <UnknownGitPath>Global git installation not found. Please add git installation directory (e.g. C:\Program Files (x86)\Git\cmd) to the 'PATH' environment variable for a global installation or set the 'LocalGitPath' property in your project file for a local installation.</UnknownGitPath>
+            <InvalidGlobalGitPath>Invalid global git path.</InvalidGlobalGitPath>
+            <InvalidLocalGitPath>Invalid local git path.</InvalidLocalGitPath>
+        </PropertyGroup>
+        <Message Text="Ensuring Git is installed" Importance="low" />
+
+        <Error Condition=" '$(LocalGitPath)' != '' AND !Exists('$(LocalGitPath)')" Text="$(InvalidLocalGitPath) $(LocalGitPath)" />
+        <PropertyGroup Condition=" '$(LocalGitPath)' != '' ">
+            <GitPath>$(LocalGitPath)</GitPath>
+            <EnsureGitInPathCmd>SETLOCAL &amp; SET PATH=$(LocalGitPath);%PATH% &amp;</EnsureGitInPathCmd>
+        </PropertyGroup>
+
+        <Exec Command="$(WINDIR)\system32\where.exe git"
+            ContinueOnError="true"
+            IgnoreExitCode="true"
+            ConsoleToMsBuild="true"
+            Condition=" '$(GitPath)' == '' ">
+            <Output TaskParameter="ExitCode" PropertyName="WhereExitCode"/>
+            <Output TaskParameter="ConsoleOutput" PropertyName="GitExecutable" />
+        </Exec>
+
+        <PropertyGroup Condition=" '$(WhereExitCode)' == '0' ">
+            <GitPath>$([System.IO.Path]::GetDirectoryName('$(GitExecutable)'))</GitPath>
+        </PropertyGroup>
+        <Error Condition=" '$(GitPath)' == '' " Text="$(UnknownGitPath)" />
+        <Error Condition=" !Exists('$(GitPath)') " Text="$(InvalidGlobalGitPath) $(GitPath)" />
+
+        <Message Text="Git path is: '$(GitPath)'" />
+    </Target>
+
     <Target Name="EnsureBower">
         <PropertyGroup>
             <BowerNotFoundError>Bower module not found. Please install Bower in the node module path '$(NodeModulePath)'.</BowerNotFoundError>
@@ -26,10 +58,11 @@
     </Target>
 
     <Target Name="RunBower" 
-        DependsOnTargets="EnsureNodeModules;EnsureBower"
+        DependsOnTargets="EnsureNodeModules;EnsureGit;EnsureBower"
         BeforeTargets="BeforeBuild"
         Condition=" Exists('$(BowerFile)') ">
-        <Exec Command="$(RunBowerCmd)"
+        <Exec Command="$(EnsureGitInPathCmd)
+                       $(RunBowerCmd)"
             CustomErrorRegularExpression="E[A-Z]+"/>
     </Target>
 <!-- vim: set ft=xml sw=4 :-->

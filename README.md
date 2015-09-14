@@ -83,6 +83,10 @@ be used instead, set these properties instead:
 
   * `BowerFile`: Path to the bower file. Defaults to `$(MSBuildProjectDirectory)\bower.json`.
   * `BowerCommand`: Bower command that should be run. Defaults to `install`.
+  
+  If no global *Git* installation is available or if a local installation should 
+  be used instead, set these properties instead:
+  * `LocalGitPath`: Path to the local *git* installation.
 
 ### MSBuild.Gulp
 
