@@ -27,8 +27,8 @@
         </PropertyGroup>
 
         <PropertyGroup>
-            <RunGulpBuildCmd>$(EnsureNodeInPathCmd) "$(GulpExecutable)" $(GulpBuildTask) > "$(GulpOut)"</RunGulpBuildCmd>
-            <RunGulpCleanCmd>$(EnsureNodeInPathCmd) "$(GulpExecutable)" $(GulpCleanTask) > "$(GulpOut)"</RunGulpCleanCmd>
+            <RunGulpBuildCmd>$(EnsureNodeInPathCmd) "$(GulpExecutable)" $(GulpBuildTask) --cwd "$(GulpWorkingDirectory)" --gulpfile "$(GulpFile)" > "$(GulpOut)"</RunGulpBuildCmd>
+            <RunGulpCleanCmd>$(EnsureNodeInPathCmd) "$(GulpExecutable)" $(GulpCleanTask) --cwd "$(GulpWorkingDirectory)" --gulpfile "$(GulpFile)" > "$(GulpOut)"</RunGulpCleanCmd>
 
             <GulpBuildTaskError>Error running gulp task '$(GulpBuildTask)'. See Warnings for details.</GulpBuildTaskError>
             <GulpCleanTaskError>Error running gulp task '$(GulpCleanTask)'. See Warnings for details.</GulpCleanTaskError>
