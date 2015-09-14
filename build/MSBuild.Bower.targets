@@ -51,10 +51,13 @@
         <Error Condition=" '$(BowerExitCode)' != '0' " Text="'$(BowerNotFoundError)'" />
 
         <PropertyGroup>
+            <BowerWorkingDirectory>$([System.IO.Path]::GetDirectoryName('$(BowerFile)'))</BowerWorkingDirectory>
             <RunBowerCmd>$(EnsureNodeInPathCmd) "$(BowerExecutable)" $(BowerCommand)</RunBowerCmd>
         </PropertyGroup>
 
         <Message Text="Bower found: '$(BowerExecutable)'" />
+        <Message Text="Bower File: '$(BowerFile)'" />
+        <Message Text="Bower Working Directory: '$(BowerWorkingDirectory)'" />
     </Target>
 
     <Target Name="RunBower" 
@@ -63,6 +66,7 @@
         Condition=" Exists('$(BowerFile)') ">
         <Exec Command="$(EnsureGitInPathCmd)
                        $(RunBowerCmd)"
+            WorkingDirectory="$(BowerWorkingDirectory)"
             CustomErrorRegularExpression="E[A-Z]+"/>
     </Target>
 <!-- vim: set ft=xml sw=4 :-->
