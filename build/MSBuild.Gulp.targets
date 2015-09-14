@@ -38,7 +38,7 @@
 
     <Target Name="RunGulpBuild"
         DependsOnTargets="EnsureNodeModules;EnsureGulp"
-        BeforeTargets="Build"
+        BeforeTargets="BeforeBuild"
         Condition=" Exists('$(GulpFile)') AND '$(GulpBuildTask)' != '' " >
         <Message Text="Running Gulp: '$(GulpBuildTask)'" />
         <Exec Command="$(RunGulpBuildCmd)"
@@ -58,7 +58,7 @@
 
     <Target Name="RunGulpClean"
         DependsOnTargets="EnsureNodeModules;EnsureGulp"
-        AfterTargets="Clean"
+        BeforeTargets="AfterClean"
         Condition=" Exists('$(GulpFile)') AND '$(GulpCleanTask)' != '' " >
         <Message Text="Running Gulp: '$(GulpCleanTask)'" />
         <Exec Command="$(RunGulpCleanCmd)"
