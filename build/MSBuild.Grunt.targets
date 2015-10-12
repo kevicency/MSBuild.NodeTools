@@ -13,6 +13,7 @@
         <Exec Command="$(WINDIR)\system32\where.exe grunt"
             ContinueOnError="true"
             IgnoreExitCode="true"
+            ConsoleToMsBuild="true"
             Condition=" !Exists('$(GruntExecutable)') ">
             <Output TaskParameter="ExitCode" PropertyName="GruntExitCode" />
             <Output TaskParameter="ConsoleOutput" PropertyName="GruntExecutable" />
