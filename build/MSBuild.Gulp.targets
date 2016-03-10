@@ -13,6 +13,7 @@
         <Exec Command="$(WINDIR)\system32\where.exe gulp.cmd"
             ContinueOnError="true"
             IgnoreExitCode="true"
+            ConsoleToMsBuild="true"
             Condition=" !Exists('$(GulpExecutable)') ">
             <Output TaskParameter="ExitCode" PropertyName="GulpExitCode"/>
             <Output TaskParameter="ConsoleOutput" PropertyName="GulpExecutable" />
