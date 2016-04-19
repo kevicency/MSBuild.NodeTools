@@ -24,7 +24,7 @@
         </Exec>
 
         <PropertyGroup Condition=" '$(WhereExitCode)' == '0' ">
-            <GitPath>$([System.IO.Path]::GetDirectoryName('$(GitExecutable)'))</GitPath>
+            <GitPath>$([System.IO.Path]::GetDirectoryName('$(GitExecutable.Split(';')[0])'))</GitPath>
         </PropertyGroup>
         <Error Condition=" '$(GitPath)' == '' " Text="$(UnknownGitPath)" />
         <Error Condition=" !Exists('$(GitPath)') " Text="$(InvalidGlobalGitPath) $(GitPath)" />
