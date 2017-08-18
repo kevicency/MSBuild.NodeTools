@@ -37,7 +37,7 @@
             <UnknownNodeModulePath>Global node modules not found. Please set the 'LocalNodeModulePath' property in your project file.</UnknownNodeModulePath>
             <InvalidGlobalNodeModulePath>Invalid global node module path.</InvalidGlobalNodeModulePath>
             <InvalidLocalNodeModulePath>Invalid local node module path.</InvalidLocalNodeModulePath>
-            <NpmGetPrefix>""$(NodePath)\npm.cmd" config get prefix"</NpmGetPrefix>
+            <NpmGetPrefix>""$(NodePath)\npm.cmd" config get prefix 2&gt; nul"</NpmGetPrefix>
         </PropertyGroup>
         <Message Text="Ensuring global npm path" Importance="low" />
 
